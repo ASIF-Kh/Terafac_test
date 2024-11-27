@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import json
 import os
-
+from natural_language import natural_to_code
 async def receive_and_write_files():
     uri = "ws://localhost:8765"
     async with websockets.connect(uri) as websocket:
@@ -11,7 +11,7 @@ async def receive_and_write_files():
                 message = await websocket.recv()
                 data = json.loads(message)
                 filename = data['filename']
-                content = data['content']
+                content = natural_to_code(data['content'])
 
                 # Create 'downloaded_files' directory if it doesn't exist
                 os.makedirs('downloaded_files', exist_ok=True)

@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import requests
 import json
-
+from natural_language import code_to_natural
 async def fetch_github_data(repo_url):
     api_url = f"https://api.github.com/repos/{repo_url.split('github.com/')[1]}/contents"
     response = requests.get(api_url)
@@ -11,9 +11,11 @@ async def fetch_github_data(repo_url):
 async def send_file_content(websocket, file_info):
     if file_info['type'] == 'file':
         content = requests.get(file_info['download_url']).text
+        nl = code_to_natural(content)
+        print("natural language: ", nl)
         await websocket.send(json.dumps({
             'filename': file_info['name'],
-            'content': content
+            'content': nl
         }))
         print(f"Sent file: {file_info['name']}")
 

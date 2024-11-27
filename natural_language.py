@@ -10,7 +10,7 @@ def code_to_natural(code):
     
     prompt = f"""
     You are an expert code translator. Your task is to convert the given code into a clear and concise natural language description.
-    Focus on explaining the purpose, functionality, and key components of the code.
+    Focus on explaining the purpose, functionality, and key components of the code and file path info.
 
     Code to translate:
     {code}
