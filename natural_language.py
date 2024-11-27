@@ -30,7 +30,7 @@ def natural_to_code(description, language="Python"):
 
     1. Language: {language}
     2. Purpose: Generate a function based on the given description
-    3. Requirements: Ensure the code is efficient, readable, and follows best practices
+    3. Requirements: Ensure the code is efficient without comments, readable, and follows best practices
     4. Input/Output: Determine appropriate inputs and outputs based on the description
     5. Additional Context: This is a standalone function that should be fully functional
 
@@ -53,12 +53,11 @@ if __name__ == "__main__":
             return n * calculate_factorial(n - 1)
     """
 
-    natural_language = translate_code_to_natural_language(code_example)
+    natural_language = code_to_natural(code_example)
     print("Natural Language Description:")
     print(natural_language)
 
-    # Example 2: Natural Language to Code
-    description = "Create a function that takes a list of numbers and returns the average of those numbers, handling empty lists and rounding the result to two decimal places."
-    generated_function = generate_function_from_natural_language(description)
+    description = natural_language
+    generated_function = natural_to_code(description)
     print("\nGenerated Function:")
     print(generated_function)
